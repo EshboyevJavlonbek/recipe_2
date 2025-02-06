@@ -9,9 +9,14 @@ class ApiClient {
     return data;
   }
 
+  Future<List<Map<String, dynamic>>> fetchProfileRecipes() async{
+    var response = await dio.get("/recipes/list");
+    List<Map<String, dynamic>> data = List<Map<String, dynamic>>.from(response.data);
+    return data;
+  }
+
   Future<Map<String, dynamic>> fetchProfile() async {
     var responseProfile = await dio.get("/auth/details/1");
-
     return responseProfile.data;
   }
 }

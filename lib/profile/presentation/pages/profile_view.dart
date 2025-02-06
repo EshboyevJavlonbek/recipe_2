@@ -180,7 +180,7 @@ class ProfileView extends StatelessWidget implements PreferredSizeWidget {
               extendBody: true,
               body: TabBarView(
                 children: [
-                  GridView(
+                  GridView.builder(
                     padding: EdgeInsets.all(8),
                     shrinkWrap: true,
                     gridDelegate:
@@ -188,64 +188,17 @@ class ProfileView extends StatelessWidget implements PreferredSizeWidget {
                       crossAxisCount: 2,
                       mainAxisSpacing: 60,
                     ),
-                    children: [
-                      CategoryItem(
-                        image: "assets/recipe/eggs.png",
-                        title: "Eggs Benedict",
-                        desc: "Muffin with Canadian bacon",
-                        rating: "5",
-                        duration: "15min",
-                      ),
-                      CategoryItem(
-                        image: "assets/recipe/franch_toast.png",
-                        title: "French Toast",
-                        desc: "Delicious slices of bread",
-                        rating: "5",
-                        duration: "20min",
-                      ),
-                      CategoryItem(
-                        image: "assets/recipe/oatmeal.png",
-                        title: "Oatmeal and Nut ",
-                        desc: "Wholesome blend for breakfast",
-                        rating: "4",
-                        duration: "35min",
-                      ),
-                      CategoryItem(
-                        image: "assets/recipe/tortilla.png",
-                        title: "Still Life Potato",
-                        desc: "Earthy, textured, rustic charm",
-                        rating: "4",
-                        duration: "30min",
-                      ),
-                      CategoryItem(
-                        image: "assets/recipe/oatmel.png",
-                        title: "Oatmeal and Granola",
-                        desc: "Strawberries and Blueberries",
-                        rating: "4",
-                        duration: "30min",
-                      ),
-                      CategoryItem(
-                        image: "assets/recipe/sunny_bruscheta.png",
-                        title: "Sunny Bruschetta",
-                        desc: "With Cream Cheese",
-                        rating: "4",
-                        duration: "30min",
-                      ),
-                      CategoryItem(
-                        image: "assets/recipe/omelette.png",
-                        title: "Omelette Cheese",
-                        desc: "Fresh Parsley",
-                        rating: "4",
-                        duration: "30min",
-                      ),
-                      CategoryItem(
-                        image: "assets/recipe/tofu_sandwich.png",
-                        title: "Tofu Sandwich",
-                        desc: "Microgreens",
-                        rating: "4",
-                        duration: "30min",
-                      ),
-                    ],
+                    itemCount: viewModel.recipes.length,
+                    itemBuilder: (context, index){
+                      return CategoryItem(
+                        image: viewModel.recipes[index].photo,
+                        title: viewModel.recipes[index].title,
+                        desc: viewModel.recipes[index].description,
+                        rating: viewModel.recipes[index].rating,
+                        duration: viewModel.recipes[index].timeRequired,
+                      );
+                    },
+                    //
                   ),
                   ListView(
                     padding: EdgeInsets.all(8),
@@ -281,3 +234,62 @@ class ProfileView extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
+
+//children: [
+//   CategoryItem(
+//     image: "assets/recipe/eggs.png",
+//     title: "Eggs Benedict",
+//     desc: "Muffin with Canadian bacon",
+//     rating: "5",
+//     duration: "15min",
+//   ),
+//   CategoryItem(
+//     image: "assets/recipe/franch_toast.png",
+//     title: "French Toast",
+//     desc: "Delicious slices of bread",
+//     rating: "5",
+//     duration: "20min",
+//   ),
+//   CategoryItem(
+//     image: "assets/recipe/oatmeal.png",
+//     title: "Oatmeal and Nut ",
+//     desc: "Wholesome blend for breakfast",
+//     rating: "4",
+//     duration: "35min",
+//   ),
+//   CategoryItem(
+//     image: "assets/recipe/tortilla.png",
+//     title: "Still Life Potato",
+//     desc: "Earthy, textured, rustic charm",
+//     rating: "4",
+//     duration: "30min",
+//   ),
+//   CategoryItem(
+//     image: "assets/recipe/oatmel.png",
+//     title: "Oatmeal and Granola",
+//     desc: "Strawberries and Blueberries",
+//     rating: "4",
+//     duration: "30min",
+//   ),
+//   CategoryItem(
+//     image: "assets/recipe/sunny_bruscheta.png",
+//     title: "Sunny Bruschetta",
+//     desc: "With Cream Cheese",
+//     rating: "4",
+//     duration: "30min",
+//   ),
+//   CategoryItem(
+//     image: "assets/recipe/omelette.png",
+//     title: "Omelette Cheese",
+//     desc: "Fresh Parsley",
+//     rating: "4",
+//     duration: "30min",
+//   ),
+//   CategoryItem(
+//     image: "assets/recipe/tofu_sandwich.png",
+//     title: "Tofu Sandwich",
+//     desc: "Microgreens",
+//     rating: "4",
+//     duration: "30min",
+//   ),
+// ],
