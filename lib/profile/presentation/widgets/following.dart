@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/profile/presentation/pages/profile_view_model.dart';
 
 class Following extends StatelessWidget {
-  const Following({super.key});
+  const Following({
+    super.key,
+    required this.viewModel,
+  });
+
+  final ProfileViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -9,29 +15,28 @@ class Following extends StatelessWidget {
       width: 356,
       height: 50,
       decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          width: 1,
-          color: Color(0xFFFFC6C9),
-        )
-      ),
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            width: 1,
+            color: Color(0xFFFFC6C9),
+          )),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ItemsFollowing(title: "recipes", num: "60"),
+          ItemsFollowing(title: "recipes", num: viewModel.profile!.recipesCount),
           Container(
             width: 1,
             height: 26,
             color: Color(0xFFFFC6C9),
           ),
-          ItemsFollowing(title: "Following", num: "120"),
+          ItemsFollowing(title: "Following", num: viewModel.profile!.followingCount),
           Container(
             width: 1,
             height: 26,
             color: Color(0xFFFFC6C9),
           ),
-          ItemsFollowing(title: "Followers", num: "250"),
+          ItemsFollowing(title: "Followers", num: viewModel.profile!.followerCount),
         ],
       ),
     );
@@ -45,7 +50,8 @@ class ItemsFollowing extends StatelessWidget {
     required this.num,
   });
 
-  final String title, num;
+  final String title;
+  final int num;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +60,7 @@ class ItemsFollowing extends StatelessWidget {
         spacing: 1,
         children: [
           Text(
-            num,
+            num.toString(),
             style: TextStyle(
               color: Colors.white,
               fontSize: 15,
