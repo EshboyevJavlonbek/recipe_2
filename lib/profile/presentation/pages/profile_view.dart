@@ -186,7 +186,7 @@ class ProfileView extends StatelessWidget implements PreferredSizeWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      mainAxisSpacing: 60,
+                      mainAxisSpacing: 150,
                     ),
                     itemCount: viewModel.recipes.length,
                     itemBuilder: (context, index){

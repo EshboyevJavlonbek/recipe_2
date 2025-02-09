@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:recipe_app/onboarding/presentation/pages/onboarding_view_model.dart';
 import 'package:recipe_app/onboarding/presentation/widgets/onboarding_elevated_button.dart';
 
@@ -17,7 +18,70 @@ class OnboardingView extends StatelessWidget {
           itemCount: viewModel.onboardingList.length + 1,
           itemBuilder: (context, index) {
             if (index >= viewModel.onboardingList.length) {
-              return Center(child: CircularProgressIndicator());
+              return Scaffold(
+                backgroundColor: Color(0xFF1C0F0D),
+                appBar: AppBar(
+                  backgroundColor: Color(0xFF1C0F0D),
+                  leadingWidth: 90,
+                  leading: Center(
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        "assets/myassets/back.svg",
+                        fit: BoxFit.none,
+                      ),
+                    ),
+                  ),
+                ),
+                extendBody: true,
+                body: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/myassets/categories.png",
+                        width: 356,
+                        height: 557,
+                        fit: BoxFit.cover,
+                      ),
+                      Text(
+                        "Welcome",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        maxLines: 3,
+                        "Find the best recipes that the world can provide you also with every step that you can learn to increase your cooking skills.",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                bottomNavigationBar: SizedBox(
+                  width: double.infinity,
+                  height: 150,
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        OnboardingElevatedButton(
+                            callback: () {}, text: "I'm New"),
+                        OnboardingElevatedButton(
+                            callback: () {}, text: "I've Been Here"),
+                      ],
+                    ),
+                  ),
+                ),
+              );
             }
             return Stack(
               alignment: Alignment.bottomCenter,
@@ -27,43 +91,57 @@ class OnboardingView extends StatelessWidget {
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.bottomCenter,
-                        width: double.infinity,
-                        height: 190,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                        ),
-                        child: Column(
-                          children: [
-
-                          ],
+                Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF1C0F0D),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      width: double.infinity,
+                      height: 300,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF1C0F0D), Colors.transparent],
+                          end: Alignment.bottomCenter,
+                          begin: Alignment.topCenter,
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 300,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.black, Colors.transparent],
-                            end: Alignment.bottomCenter,
-                            begin: Alignment.topCenter,
+                      child: Column(
+                        spacing: 15,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            viewModel.onboardingList[index].title,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
+                          Text(
+                            viewModel.onboardingList[index].subtitle,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 Container(
                   width: double.infinity,
                   height: 100,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.black, Colors.transparent],
+                      colors: [Color(0xFF1C0F0D), Colors.transparent],
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                     ),
@@ -73,14 +151,16 @@ class OnboardingView extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 48),
                   child: OnboardingElevatedButton(
                       callback: () => viewModel.controller.nextPage(
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.linear),
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.linear,
+                          ),
                       text: "Continue"),
                 ),
               ],
             );
           },
-          onPageChanged: (index) => viewModel.pageChangedCallBack(index, context),
+          onPageChanged: (index) =>
+              viewModel.pageChangedCallBack(index, context),
         ),
       ),
     );

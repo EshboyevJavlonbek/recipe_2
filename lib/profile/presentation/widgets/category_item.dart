@@ -23,7 +23,7 @@ class CategoryItem extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Positioned(
-              bottom: -150,
+              bottom: -175,
               right: 5,
               left: 5,
               child: Container(

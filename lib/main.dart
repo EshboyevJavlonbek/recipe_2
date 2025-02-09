@@ -22,7 +22,7 @@ class RecipeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfileView(viewModel: ProfileViewModel(repo: ProfileRepository(client: ApiClient()))),
+      home: OnboardingView(viewModel: OnboardingViewModel(repo: OnboardingRepository(client: ApiClient()))),
     );
   }
 }
