@@ -1,9 +1,26 @@
 import 'package:dio/dio.dart';
 
 class ApiClient {
-  // final home = "192.168.100.132";
-  // final najot = "10.10.2.9";
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.100.132:8888/api/v1"));
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.24.102:8888/api/v1"));
+
+  Future<List<dynamic>> fetchCategories() async{
+    var response = await dio.get('/categories/list');
+    List<dynamic> data = response.data;
+      return data;
+  }
+
+  Future<String> login(String login, String password) async{
+    var response = await dio.post(
+      '/auth/login',
+      data: {"login": login, "password": password},
+    );
+    if (response.statusCode == 200){
+      Map<String, String> data = Map<String, String>.from(response.data);
+      return data['accessToken']!;
+    }else{
+      throw Exception("Login qilib bo'lmadi!");
+    }
+  }
 
   Future<List<dynamic>> fetchOnboarding() async {
     var response = await dio.get("/onboarding/list");
