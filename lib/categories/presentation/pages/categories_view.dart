@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:recipe_app/categories/presentation/pages/categories_view_model.dart';
 import 'package:recipe_app/categories/presentation/widgets/categories_item.dart';
 import 'package:recipe_app/profile/presentation/widgets/bottom_nav_bar2.dart';
-import 'package:recipe_app/profile/presentation/widgets/main_categories_item.dart';
+import 'package:recipe_app/categories/presentation/widgets/main_categories_item.dart';
 
 class CategoriesView extends StatelessWidget {
   const CategoriesView({super.key, required this.vm});
