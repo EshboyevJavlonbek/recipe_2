@@ -4,9 +4,6 @@ import 'package:recipe_app/categories/data/repositories/categories_repository.da
 import 'package:recipe_app/categories/presentation/pages/categories_view.dart';
 import 'package:recipe_app/categories/presentation/pages/categories_view_model.dart';
 import 'package:recipe_app/core/client.dart';
-import 'package:recipe_app/profile/data/repositories/profile_repository.dart';
-import 'package:recipe_app/profile/presentation/pages/profile_view.dart';
-import 'package:recipe_app/profile/presentation/pages/profile_view_model.dart';
 
 void main() => runApp(RecipeApp());
 
