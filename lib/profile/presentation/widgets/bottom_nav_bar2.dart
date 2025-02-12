@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomNavBar2 extends StatelessWidget {
   const BottomNavBar2({super.key});
@@ -19,10 +20,22 @@ class BottomNavBar2 extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SvgPicture.asset("assets/recipe/icon/home.svg"),
-            SvgPicture.asset("assets/recipe/icon/massages.svg"),
-            SvgPicture.asset("assets/recipe/icon/categories.svg"),
-            SvgPicture.asset("assets/recipe/icon/profile.svg"),
+            IconButton(
+              icon: SvgPicture.asset("assets/recipe/icon/home.svg"),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: SvgPicture.asset("assets/recipe/icon/massages.svg"),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: SvgPicture.asset("assets/recipe/icon/categories.svg"),
+              onPressed: () => context.go('/categories'),
+            ),
+            IconButton(
+              icon: SvgPicture.asset("assets/recipe/icon/profile.svg"),
+              onPressed: () {},
+            ),
           ],
         ),
       ),

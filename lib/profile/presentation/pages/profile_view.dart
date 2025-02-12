@@ -28,10 +28,8 @@ class ProfileView extends StatelessWidget implements PreferredSizeWidget {
         child: switch (viewModel.loading) {
           true => Center(child: CircularProgressIndicator()),
           false => Scaffold(
-              backgroundColor: Color(0xFF1C0F0D),
               appBar: AppBar(
                 toolbarHeight: 97,
-                backgroundColor: Color(0xFF1C0F0D),
                 title: Row(
                   spacing: 10,
                   children: [
@@ -55,7 +53,6 @@ class ProfileView extends StatelessWidget implements PreferredSizeWidget {
                           Text(
                             viewModel.profile!.fullName,
                             style: TextStyle(
-                              color: Color(0xFFFD5D69),
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                             ),
@@ -152,7 +149,6 @@ class ProfileView extends StatelessWidget implements PreferredSizeWidget {
                         ),
                       ),
                       TabBar(
-                        indicatorColor: Color(0xFFFD5D69),
                         indicatorSize: TabBarIndicatorSize.tab,
                         tabs: [
                           Text(

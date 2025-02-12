@@ -17,7 +17,6 @@ class CategoriesView extends StatelessWidget {
       builder: (context, _) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0xFF1C0F0D),
             leading: SvgPicture.asset(
               "assets/myassets/back.svg",
               fit: BoxFit.none,
@@ -25,14 +24,12 @@ class CategoriesView extends StatelessWidget {
             title: Text(
               "Categories",
               style: TextStyle(
-                color: Color(0xFFFD5D69),
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
             ),
             centerTitle: true,
           ),
-          backgroundColor: Color(0xFF1C0F0D),
           extendBody: true,
           body: CategoriesBody(viewModel: vm),
           bottomNavigationBar: BottomNavBar2(),

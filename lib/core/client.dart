@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiClient {
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.24.102:8888/api/v1"));
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.118.102:8888/api/v1"));
 
   Future<List<dynamic>> fetchCategories() async{
     var response = await dio.get('/categories/list');

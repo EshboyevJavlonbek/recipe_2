@@ -151,9 +151,9 @@ class OnboardingView extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 48),
                   child: OnboardingElevatedButton(
                       callback: () => viewModel.controller.nextPage(
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.linear,
-                          ),
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.linear,
+                      ),
                       text: "Continue"),
                 ),
               ],
