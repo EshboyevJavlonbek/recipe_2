@@ -18,6 +18,7 @@ final ThemeData appThemeData = ThemeData(
   ),
   appBarTheme: AppBarTheme(
     backgroundColor: AppColors.beigeColor,
+    foregroundColor: AppColors.redPinkMain,
     surfaceTintColor: Colors.transparent,
   )
 );

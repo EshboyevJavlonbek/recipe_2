@@ -34,7 +34,7 @@ class BottomNavBar2 extends StatelessWidget {
             ),
             IconButton(
               icon: SvgPicture.asset("assets/recipe/icon/profile.svg"),
-              onPressed: () {},
+              onPressed: () => context.go('/profile'),
             ),
           ],
         ),

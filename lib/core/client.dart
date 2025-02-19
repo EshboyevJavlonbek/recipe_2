@@ -1,13 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiClient {
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.118.102:8888/api/v1"));
-
-  Future<List<dynamic>> fetchCategories() async{
-    var response = await dio.get('/categories/list');
-    List<dynamic> data = response.data;
-      return data;
-  }
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.137.1:8888/api/v1"));
 
   Future<String> login(String login, String password) async{
     var response = await dio.post(
@@ -20,6 +14,12 @@ class ApiClient {
     }else{
       throw Exception("Login qilib bo'lmadi!");
     }
+  }
+
+  Future<List<dynamic>> fetchCategories() async{
+    var response = await dio.get('/categories/list');
+    List<dynamic> data = response.data;
+    return data;
   }
 
   Future<List<dynamic>> fetchOnboarding() async {

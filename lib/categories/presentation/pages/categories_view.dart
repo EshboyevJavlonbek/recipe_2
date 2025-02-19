@@ -53,6 +53,7 @@ class CategoriesBody extends StatelessWidget {
       listenable: viewModel,
       builder: (context, _) {
         return ListView(
+          shrinkWrap: true,
           children: [
             if (viewModel.mainCategory != null)
               MainCategoriesItem(
