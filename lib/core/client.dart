@@ -1,22 +1,38 @@
 import 'package:dio/dio.dart';
 
-class ApiClient {
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.137.1:8888/api/v1"));
+import '../features/auth/data/models/user_model.dart';
 
-  Future<String> login(String login, String password) async{
+class ApiClient {
+  final Dio dio = Dio(
+    BaseOptions(baseUrl: "http://192.168.137.1:8888/api/v1"),
+  );
+
+  Future<String> login(String login, String password) async {
     var response = await dio.post(
       '/auth/login',
       data: {"login": login, "password": password},
     );
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       Map<String, String> data = Map<String, String>.from(response.data);
       return data['accessToken']!;
-    }else{
+    } else {
       throw Exception("Login qilib bo'lmadi!");
     }
   }
 
-  Future<List<dynamic>> fetchCategories() async{
+  Future<bool> signUp(UserModel model) async {
+    var response = await dio.post(
+      '/auth/register',
+      data: model.toJson(),
+    );
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<List<dynamic>> fetchCategories() async {
     var response = await dio.get('/categories/list');
     List<dynamic> data = response.data;
     return data;
@@ -28,9 +44,10 @@ class ApiClient {
     return data;
   }
 
-  Future<List<Map<String, dynamic>>> fetchProfileRecipes() async{
+  Future<List<Map<String, dynamic>>> fetchProfileRecipes() async {
     var response = await dio.get("/recipes/list");
-    List<Map<String, dynamic>> data = List<Map<String, dynamic>>.from(response.data);
+    List<Map<String, dynamic>> data =
+        List<Map<String, dynamic>>.from(response.data);
     return data;
   }
 

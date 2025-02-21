@@ -1,6 +1,8 @@
 import 'package:recipe_app/core/client.dart';
 import 'package:recipe_app/core/secure_storage.dart';
 
+import '../../../features/auth/data/models/user_model.dart';
+
 class AuthRepository {
   AuthRepository({required this.client});
 
@@ -14,6 +16,29 @@ class AuthRepository {
     await SecureStorage.saveCredentials(login, password);
     await SecureStorage.saveToken(jwt!);
     return true;
+  }
+
+  Future<bool> signUp({
+    required String firstName,
+    required String lastName,
+    required String username,
+    required String email,
+    required String phoneNumber,
+    required DateTime dateOfBirth,
+    required String password,
+  }) async {
+    final result = await client.signUp(
+      UserModel(
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password,
+        dateOfBirth: dateOfBirth,
+      ),
+    );
+    return result;
   }
 
   Future<void> logout() async {
