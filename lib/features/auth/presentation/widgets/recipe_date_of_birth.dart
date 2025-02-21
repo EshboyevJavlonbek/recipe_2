@@ -50,7 +50,7 @@ class RecipeDateOfBirthField extends StatelessWidget {
             child: Container(
               width: 357,
               height: 48,
-              padding: EdgeInsets.only(left: AppSizes.padding36),
+              padding: EdgeInsets.only(left: 36),
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
                 color: AppColors.pink,

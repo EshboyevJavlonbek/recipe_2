@@ -18,7 +18,7 @@ import 'features/profile/presentation/pages/profile_view_model.dart';
 void main() => runApp(RecipeApp());
 
 GoRouter router = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/signUp',
   routes: [
     GoRoute(path: '/onboarding', builder: (context, state) => OnboardingView(viewModel: OnboardingViewModel(repo: OnboardingRepository(client: ApiClient())))),
     GoRoute(path: '/profile', builder: (context, state) => ProfileView(viewModel: ProfileViewModel(repo: ProfileRepository(client: ApiClient())))),
