@@ -34,19 +34,19 @@ class SignUpView extends StatelessWidget {
                   children: [
                     RecipeTextFormField(
                       title: "First Name",
-                      hintText: "Abdulloh",
+                      hintText: "Davlat",
                       validator: (value) => null,
                       controller: vm.firstNameController,
                     ),
                     RecipeTextFormField(
                       title: "Last Name",
-                      hintText: "Abdurahmonov",
+                      hintText: "Davlatov",
                       validator: (value) => null,
                       controller: vm.lastNameController,
                     ),
                     RecipeTextFormField(
                       title: "Username",
-                      hintText: "chef-solih",
+                      hintText: "username",
                       validator: (value) => null,
                       controller: vm.usernameController,
                     ),
@@ -72,7 +72,8 @@ class SignUpView extends StatelessWidget {
                       controller: vm.confirmPasswordController,
                       title: "Confirm Password",
                       validator: (value) {
-                        if (vm.passwordController.text != vm.confirmPasswordController.text) {
+                        if (vm.passwordController.text !=
+                            vm.confirmPasswordController.text) {
                           return "Passwords do not match!";
                         }
                         return null;
@@ -94,6 +95,7 @@ class SignUpView extends StatelessWidget {
                         context: context,
                         builder: (context) => Center(
                           child: Container(
+                            padding: EdgeInsets.all(20),
                             width: 250,
                             height: 286,
                             decoration: BoxDecoration(
@@ -101,8 +103,33 @@ class SignUpView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(40),
                             ),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("Sign Up Successful!"),
+                                Text(
+                                  maxLines: 2,
+                                  "Sign Up Succesful!",
+                                  style: TextStyle(
+                                    color: AppColors.beigeColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.none,
+                                  ),
+                                ),
+                                Image.asset(
+                                  "assets/myassets/profile.png",
+                                  width: 82,
+                                  height: 82,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(
+                                  maxLines: 4,
+                                  "Lorem ipsum dolor sit amet pretium cras id dui pellentesque ornare. Quisque malesuada.",
+                                  style: TextStyle(
+                                      color: AppColors.beigeColor,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.none),
+                                )
                               ],
                             ),
                           ),
