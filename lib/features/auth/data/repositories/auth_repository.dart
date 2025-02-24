@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:recipe_app/core/client.dart';
 import 'package:recipe_app/core/secure_storage.dart';
 
-import '../../../features/auth/data/models/user_model.dart';
+import '../models/user_model.dart';
 
 class AuthRepository {
   AuthRepository({required this.client});
@@ -38,6 +40,11 @@ class AuthRepository {
         dateOfBirth: dateOfBirth,
       ),
     );
+    return result;
+  }
+
+  Future<bool> uploadProfilePhoto(File file)async{
+    final result = await client.uploadProfilePhoto(file);
     return result;
   }
 
