@@ -58,15 +58,19 @@ class CategoriesBody extends StatelessWidget {
           children: [
             if (viewModel.mainCategory != null)
               MainCategoriesItem(
-                title: viewModel.mainCategory?.title,
-                image: viewModel.mainCategory?.image,
+                category: viewModel.mainCategory!,
               ),
             SizedBox(
               height: 20,
             ),
             GridView.builder(
               physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.only(
+                top: 30,
+                right: 16,
+                left: 16,
+                bottom: 120,
+              ),
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -75,8 +79,7 @@ class CategoriesBody extends StatelessWidget {
               itemCount: viewModel.categories.length,
               itemBuilder: (context, index) {
                 return CategoriesItem(
-                  image: viewModel.categories[index].image,
-                  title: viewModel.categories[index].title,
+                  category: viewModel.categories[index],
                 );
               },
             ),

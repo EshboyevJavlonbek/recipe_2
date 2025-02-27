@@ -1,36 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recipe_app/features/categories/data/models/categories_model.dart';
 
 class MainCategoriesItem extends StatelessWidget {
   const MainCategoriesItem({
     super.key,
-    required this.title,
-    required this.image,
+    required this.category,
   });
 
-  final String? title, image;
+  final CategoriesModel category;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          title!,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-          ),
+    final categoriesTitle = Text(
+      category.title,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+      ),
+    );
+    final categoriesImage = ClipRRect(
+      borderRadius: BorderRadius.circular(13),
+      child: Image.network(
+        category.image,
+        width: 356,
+        height: 148,
+        fit: BoxFit.cover,
+      ),
+    );
+    return Center(
+      child: GestureDetector(
+        onTap: (){
+          GoRouter.of(context).go('/category-detail', extra: category);
+        },
+        child: Column(
+          children: [
+            categoriesTitle,
+            categoriesImage
+          ],
         ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(13),
-          child: Image.network(
-            image!,
-            width: 356,
-            height: 148,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

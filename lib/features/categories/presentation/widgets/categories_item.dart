@@ -1,37 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/features/categories/data/models/categories_model.dart';
 
 class CategoriesItem extends StatelessWidget {
   const CategoriesItem({
     super.key,
-    required this.image,
-    required this.title,
+    required this.category,
   });
 
-  final String image, title;
+  final CategoriesModel category;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 10,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(13),
-          child: Image.network(
-            image,
-            width: 159,
-            height: 145,
-            fit: BoxFit.cover,
-          ),
+    final categoriesImage = ClipRRect(
+      borderRadius: BorderRadius.circular(13),
+      child: Image.network(
+        category.image,
+        width: 159,
+        height: 145,
+        fit: BoxFit.cover,
+      ),
+    );
+    final categoriesTitle = Text(
+      category.title,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+      ),
+    );
+    return Center(
+      child: GestureDetector(
+        onTap: (){},
+        child: Column(
+          spacing: 10,
+          children: [
+            categoriesImage,
+            categoriesTitle,
+          ],
         ),
-        Text(
-          title,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

@@ -5,13 +5,26 @@ import 'package:dio/dio.dart';
 import '../features/auth/data/models/user_model.dart';
 
 class ApiClient {
-
   ApiClient() {
-    dio = Dio(
-      BaseOptions(baseUrl: "http://192.168.137.1:8888/api/v1"));
+    dio = Dio(BaseOptions(baseUrl: "http://192.168.137.1:8888/api/v1"));
   }
-  
+
   late final Dio dio;
+
+  Future<List<dynamic>> fetchRecipes(int categoryId) async {
+    var response = await dio.get('/recipes/list?Category=$categoryId');
+    List<dynamic> data = response.data;
+    return data;
+  }
+
+  Future<Map<String, dynamic>> fetchCategoryDetail(recipeId) async {
+    var response = await dio.get('/recipes/detail/$recipeId');
+    Map<String, dynamic> data = response.data;
+    if (response.statusCode == 200) {
+      return data;
+    }
+    throw {Exception("StatusCode xato!!!")};
+  }
 
   Future<String> login(String login, String password) async {
     var response = await dio.post(
@@ -28,13 +41,15 @@ class ApiClient {
 
   Future<bool> uploadProfilePhoto(File file) async {
     FormData fromData = FormData.fromMap(
-      {"profilePhoto": await MultipartFile.fromFile(file.path, filename: file.path.split('/').last)},
+      {
+        "profilePhoto": await MultipartFile.fromFile(file.path,
+            filename: file.path.split('/').last)
+      },
     );
 
-    var response = await dio.patch(
-        '/auth/upload', data: fromData, options: Options(headers: {
-      "Content-Type": "multipart/from-data"
-    }));
+    var response = await dio.patch('/auth/upload',
+        data: fromData,
+        options: Options(headers: {"Content-Type": "multipart/from-data"}));
 
     if (response.statusCode == 200) {
       return true;
@@ -69,7 +84,7 @@ class ApiClient {
   Future<List<Map<String, dynamic>>> fetchProfileRecipes() async {
     var response = await dio.get("/recipes/list");
     List<Map<String, dynamic>> data =
-    List<Map<String, dynamic>>.from(response.data);
+        List<Map<String, dynamic>>.from(response.data);
     return data;
   }
 
