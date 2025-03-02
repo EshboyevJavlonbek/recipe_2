@@ -1,0 +1,10 @@
+{
+  "firstName": "Ism",
+  "lastName": "Familiya",
+  "username": "Foydalanuvchi ism",
+  "email": "Elektron poshta",
+  "phoneNumber": "Telefon raqam",
+  "dateOfBirth": "Tug'ulgan sana",
+  "password": "Parol",
+  "confirmPassword": "Parolni tasdiqlash"
+}

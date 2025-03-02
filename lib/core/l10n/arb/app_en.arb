@@ -1,0 +1,10 @@
+{
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "username": "Username",
+  "email": "Email",
+  "phoneNumber": "Phone Number",
+  "dateOfBirth": "Date Of Birth",
+  "password": "Password",
+  "confirmPassword": "Confirm Password"
+}
