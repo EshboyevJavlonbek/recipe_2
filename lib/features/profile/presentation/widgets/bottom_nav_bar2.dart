@@ -9,34 +9,37 @@ class BottomNavBar2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
-      child: Container(
-        clipBehavior: Clip.none,
-        width: 281,
-        height: 56,
-        decoration: BoxDecoration(
-          color: Color(0xFFFD5D69),
-          borderRadius: BorderRadius.circular(33),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(
-              icon: SvgPicture.asset("assets/recipe/icon/home.svg"),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: SvgPicture.asset("assets/recipe/icon/massages.svg"),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: SvgPicture.asset("assets/recipe/icon/categories.svg"),
-              onPressed: () => context.go('/categories'),
-            ),
-            IconButton(
-              icon: SvgPicture.asset("assets/recipe/icon/profile.svg"),
-              onPressed: () => context.go('/profile'),
-            ),
-          ],
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Container(
+          clipBehavior: Clip.none,
+          width: 281,
+          height: 56,
+          decoration: BoxDecoration(
+            color: Color(0xFFFD5D69),
+            borderRadius: BorderRadius.circular(33),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                icon: SvgPicture.asset("assets/recipe/icon/home.svg"),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: SvgPicture.asset("assets/recipe/icon/massages.svg"),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: SvgPicture.asset("assets/recipe/icon/categories.svg"),
+                onPressed: () => context.go('/categories'),
+              ),
+              IconButton(
+                icon: SvgPicture.asset("assets/recipe/icon/profile.svg"),
+                onPressed: () => context.go('/profile'),
+              ),
+            ],
+          ),
         ),
       ),
     );

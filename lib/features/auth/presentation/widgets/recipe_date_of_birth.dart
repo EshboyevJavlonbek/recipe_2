@@ -6,7 +6,12 @@ import '../../../../core/utils/sizes.dart';
 import '../manager/sign_up_view_model.dart';
 
 class RecipeDateOfBirthField extends StatelessWidget {
-  const RecipeDateOfBirthField({super.key});
+  const RecipeDateOfBirthField({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,7 @@ class RecipeDateOfBirthField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Date Of Birth",
+            title,
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
@@ -25,7 +30,8 @@ class RecipeDateOfBirthField extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-              context.read<SignUpViewModel>().selectedDate = await showDatePicker(
+              context.read<SignUpViewModel>().selectedDate =
+                  await showDatePicker(
                 builder: (context, child) => Theme(
                   data: ThemeData(
                     colorScheme: ColorScheme(
@@ -57,9 +63,12 @@ class RecipeDateOfBirthField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
               ),
               child: Text(
-                date == null ? "DD/MM/YYYY" : "${date.day}/${date.month}/${date.year}",
+                date == null
+                    ? "DD/MM/YYYY"
+                    : "${date.day}/${date.month}/${date.year}",
                 style: TextStyle(
-                  color: AppColors.beigeColor.withValues(alpha: date == null ? 0.5 : 1),
+                  color: AppColors.beigeColor
+                      .withValues(alpha: date == null ? 0.5 : 1),
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),

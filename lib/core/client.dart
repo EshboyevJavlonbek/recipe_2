@@ -11,19 +11,32 @@ class ApiClient {
 
   late final Dio dio;
 
-  Future<List<dynamic>> fetchRecipes(int categoryId) async {
-    var response = await dio.get('/recipes/list?Category=$categoryId');
-    List<dynamic> data = response.data;
-    return data;
+  Future<List<dynamic>> fetchCategories() async{
+    var response = await dio.get('/categories/list');
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+      return data;
+    }else {
+      throw Exception("/categories/list so'rovimiz o'xshamadi!");
+    }
   }
 
-  Future<Map<String, dynamic>> fetchCategoryDetail(recipeId) async {
-    var response = await dio.get('/recipes/detail/$recipeId');
-    Map<String, dynamic> data = response.data;
+  Future<List<dynamic>> fetchRecipesByCategory(int categoryId) async {
+    var response = await dio.get('/recipes/list?Category=$categoryId');
     if (response.statusCode == 200) {
-      return data;
+      return response.data as List<dynamic>;
+    } else {
+      throw Exception("/recipes/list?Category=$categoryId so'rovimiz o'xshamadi");
     }
-    throw {Exception("StatusCode xato!!!")};
+  }
+
+  Future<Map<String, dynamic>> fetchRecipeById(int recipeId) async {
+    var response = await dio.get('/recipes/detail/$recipeId');
+    if (response.statusCode == 200) {
+      return response.data as Map<String, dynamic>;
+    } else {
+      throw Exception('/recipes/detail/$recipeId sorovimiz xato ketti');
+    }
   }
 
   Future<String> login(String login, String password) async {
@@ -67,12 +80,6 @@ class ApiClient {
     } else {
       return false;
     }
-  }
-
-  Future<List<dynamic>> fetchCategories() async {
-    var response = await dio.get('/categories/list');
-    List<dynamic> data = response.data;
-    return data;
   }
 
   Future<List<dynamic>> fetchOnboarding() async {

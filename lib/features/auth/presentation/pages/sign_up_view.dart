@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:recipe_app/core/l10n/app_localizations.dart';
+import 'package:recipe_app/core/l10n/localization_view_model.dart';
 import 'package:recipe_app/core/widgets/recipe_elevated_button2.dart';
 
 import '../../../../core/utils/colors.dart';
@@ -23,6 +25,20 @@ class SignUpView extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             title: Text("Sign Up"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  context.read<LocalizationViewModel>().currentLocale = Locale("uz");
+                },
+                child: Text("uz"),
+              ),
+              TextButton(
+                onPressed: () {
+                  context.read<LocalizationViewModel>().currentLocale = Locale("en");
+                },
+                child: Text("en"),
+              ),
+            ],
           ),
           body: ListView(
             children: [
@@ -33,44 +49,46 @@ class SignUpView extends StatelessWidget {
                   spacing: 10,
                   children: [
                     RecipeTextFormField(
-                      title: "First Name",
+                      title: MyLocalizations.of(context)!.firstName,
                       hintText: "Davlat",
                       validator: (value) => null,
                       controller: vm.firstNameController,
                     ),
                     RecipeTextFormField(
-                      title: "Last Name",
+                      title: MyLocalizations.of(context)!.lastName,
                       hintText: "Davlatov",
                       validator: (value) => null,
                       controller: vm.lastNameController,
                     ),
                     RecipeTextFormField(
-                      title: "Username",
+                      title: MyLocalizations.of(context)!.username,
                       hintText: "username",
                       validator: (value) => null,
                       controller: vm.usernameController,
                     ),
                     RecipeTextFormField(
-                      title: "Email",
+                      title: MyLocalizations.of(context)!.email,
                       hintText: "example@example.com",
                       validator: (value) => null,
                       controller: vm.emailController,
                     ),
                     RecipeTextFormField(
-                      title: "Phone Number",
+                      title: MyLocalizations.of(context)!.phoneNumber,
                       hintText: "+998901234567",
                       validator: (value) => null,
                       controller: vm.numberController,
                     ),
-                    RecipeDateOfBirthField(),
+                    RecipeDateOfBirthField(
+                      title: MyLocalizations.of(context)!.dateOfBirth,
+                    ),
                     RecipePasswordFormField(
                       controller: vm.passwordController,
-                      title: "Password",
+                      title: MyLocalizations.of(context)!.password,
                       validator: (value) => null,
                     ),
                     RecipePasswordFormField(
                       controller: vm.confirmPasswordController,
-                      title: "Confirm Password",
+                      title: MyLocalizations.of(context)!.confirmPassword,
                       validator: (value) {
                         if (vm.passwordController.text !=
                             vm.confirmPasswordController.text) {

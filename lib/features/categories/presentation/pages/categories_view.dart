@@ -1,91 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../profile/presentation/widgets/bottom_nav_bar2.dart';
-import '../widgets/categories_item.dart';
-import '../widgets/main_categories_item.dart';
-import 'categories_view_model.dart';
+import '../../../common/presentation/widgets/recipe_app_bar.dart';
+import '../../../common/presentation/widgets/recipe_bottom_navigation_bar.dart';
+import '../../../common/presentation/widgets/recipe_icon_button_container.dart';
+import '../manager/category_view_model.dart';
+import '../widgets/category_item.dart';
 
 class CategoriesView extends StatelessWidget {
-  const CategoriesView({super.key, required this.vm});
+  const CategoriesView({
+    super.key,
+    required this.vm,
+  });
 
-  final CategoriesViewModel vm;
+  //
+  final CategoryViewModel vm;
 
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: vm,
-      builder: (context, _) {
-        return Scaffold(
-          appBar: AppBar(
-            leading: SvgPicture.asset(
-              "assets/myassets/back.svg",
-              fit: BoxFit.none,
-            ),
-            title: Text(
-              "Categories",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            centerTitle: true,
-          ),
+      builder: (context, child) => RefreshIndicator(
+        onRefresh: vm.load,
+        child: Scaffold(
           extendBody: true,
-          body: CategoriesBody(viewModel: vm),
-          bottomNavigationBar: BottomNavBar2(),
-        );
-      },
-    );
-  }
-}
-
-class CategoriesBody extends StatelessWidget {
-  const CategoriesBody({
-    super.key,
-    required this.viewModel,
-  });
-
-  final CategoriesViewModel viewModel;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: viewModel,
-      builder: (context, _) {
-        return ListView(
-          shrinkWrap: true,
-          children: [
-            if (viewModel.mainCategory != null)
-              MainCategoriesItem(
-                category: viewModel.mainCategory!,
+          appBar: RecipeAppBar(
+            title: "Categories",
+            actions: [
+              RecipeIconButtonContainer(
+                image: "assets/myassets/notification.svg",
+                iconWidth: 14,
+                iconHeight: 19,
+                callback: () {},
               ),
-            SizedBox(
-              height: 20,
-            ),
-            GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.only(
-                top: 30,
-                right: 16,
-                left: 16,
-                bottom: 120,
+              SizedBox(width: 5),
+              RecipeIconButtonContainer(
+                image: "assets/myassets/search.svg",
+                iconWidth: 12,
+                iconHeight: 18,
+                callback: () {},
               ),
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
+            ],
+          ),
+          body: CustomScrollView(
+            slivers: [
+              if (vm.mainCategory != null)
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 36),
+                  sliver: SliverToBoxAdapter(
+                    child: CategoryItem(category: vm.mainCategory!),
+                  ),
+                ),
+              SliverPadding(
+                padding: const EdgeInsets.only(left: 36, right: 36, top: 16, bottom: 100),
+                sliver: SliverGrid(
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: vm.categories.length,
+                        (context, index) => CategoryItem(category: vm.categories[index]),
+                  ),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisExtent: 172,
+                    mainAxisSpacing: 8,
+                    childAspectRatio: 172 / 160,
+                    crossAxisSpacing: 39,
+                  ),
+                ),
               ),
-              itemCount: viewModel.categories.length,
-              itemBuilder: (context, index) {
-                return CategoriesItem(
-                  category: viewModel.categories[index],
-                );
-              },
-            ),
-          ],
-        );
-      },
+            ],
+          ),
+          bottomNavigationBar: RecipeBottomNavigationBar(),
+        ),
+      ),
     );
   }
 }

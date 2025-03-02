@@ -1,21 +1,21 @@
-class CategoriesModel {
+class CategoryModel {
   final int id;
   final String title, image;
-  final bool main;
+  final bool isMain;
 
-  CategoriesModel({
+  CategoryModel({
     required this.id,
     required this.title,
     required this.image,
-    required this.main,
+    required this.isMain,
   });
 
-  factory CategoriesModel.fromJson(Map<String, dynamic> json) {
-    return CategoriesModel(
+  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+    return CategoryModel(
       id: json['id'],
       title: json['title'],
       image: json['image'],
-      main: json['main'],
+      isMain: json['main'],
     );
   }
 }
